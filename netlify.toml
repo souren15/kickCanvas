@@ -1,0 +1,16 @@
+# KickCanvas on Netlify.
+# The site itself is static files in this folder; orders and the admin panel run as Netlify
+# Functions (netlify/functions) that store data in Netlify Blobs. Functions only deploy from a
+# Git-connected site or the Netlify CLI - drag-and-drop uploads skip them. See ADMIN-SETUP.md.
+
+[build]
+  publish = "."
+  command = "echo 'Static site - no build step needed'"
+
+[build.environment]
+  # @netlify/blobs 11 needs Node 22.12+. Functions run on the build's Node version.
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"

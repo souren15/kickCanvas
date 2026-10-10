@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Static defaults must MATCH META.home in js/app.js: app.js rewrites these per route at
+     runtime, but any crawler that does not execute JavaScript — every social crawler, and
+     Googlebot on its first pass — only ever sees what is hard-coded here. -->
+<title>Custom Sneakers India — Design Your Own in 3D | KickCanvas</title>
+<meta name="description" content="Design custom sneakers in India — recolour every panel on a real 3D model, pick finishes, print your own artwork. Order with Cash on Delivery.">
+<meta name="keywords" content="custom sneakers India, 3D sneaker configurator, design your own shoes, personalised sneakers, customised shoes online">
+<meta name="theme-color" content="#F5F5F3">
+<meta property="og:site_name" content="KickCanvas">
+<meta property="og:title" content="KickCanvas | Custom Sneakers — Designed by You">
+<meta property="og:description" content="A real 3D sneaker configurator. Recolour every panel, choose finishes, add artwork, see it from every angle. Order with Cash on Delivery.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kickcanvas.netlify.app/">
+<meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://kickcanvas.netlify.app/assets/brand/og-card.jpg?v=2">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="KickCanvas — custom sneakers, designed by you.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kickcanvas.netlify.app/assets/brand/og-card.jpg?v=2">
+<meta name="twitter:image:alt" content="KickCanvas — custom sneakers, designed by you.">
+<link rel="canonical" href="https://kickcanvas.netlify.app/">
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/permanent-marker-latin-400-normal.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/posters/street-low-hero.jpg" as="image" fetchpriority="high">
+<link rel="stylesheet" href="css/kickcanvas.css?v=11">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./assets/vendor/three/three.module.js",
+    "three/addons/": "./assets/vendor/three/addons/"
+  }
+}
+</script>
+<link rel="modulepreload" href="js/app.js?v=11">
+<link rel="modulepreload" href="js/engine/viewer.js">
+<link rel="modulepreload" href="./assets/vendor/three/three.module.js">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization","@id":"https://kickcanvas.netlify.app/#org","name":"KickCanvas","url":"https://kickcanvas.netlify.app/","logo":{"@type":"ImageObject","url":"https://kickcanvas.netlify.app/assets/brand/kc-logo.svg"},"image":"https://kickcanvas.netlify.app/assets/brand/og-card.jpg","slogan":"Custom sneakers. Designed by you.","description":"A 3D sneaker customisation platform. Design every panel of a real 3D model, add your own artwork, and order a pair made to your design, paid by Cash on Delivery.","email":"hello@kickcanvas.in","foundingDate":"2026","areaServed":{"@type":"Country","name":"India"},"address":{"@type":"PostalAddress","addressLocality":"Bengaluru","addressRegion":"Karnataka","addressCountry":"IN"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"hello@kickcanvas.in","areaServed":"IN","availableLanguage":["en","hi","kn"]}},
+{"@type":"WebSite","@id":"https://kickcanvas.netlify.app/#site","url":"https://kickcanvas.netlify.app/","name":"KickCanvas","inLanguage":"en-IN","publisher":{"@id":"https://kickcanvas.netlify.app/#org"}},
+{"@type":"WebApplication","@id":"https://kickcanvas.netlify.app/#configurator","name":"KickCanvas 3D Sneaker Configurator","url":"https://kickcanvas.netlify.app/design","applicationCategory":"DesignApplication","operatingSystem":"Any modern web browser","browserRequirements":"Requires WebGL","description":"Customise a sneaker in 3D: nine recolourable parts, five material finishes, and your own text or artwork projected onto the real 3D surface.","publisher":{"@id":"https://kickcanvas.netlify.app/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"INR","description":"Free to use. No account required."}},
+{"@type":"FAQPage","@id":"https://kickcanvas.netlify.app/about#faq","mainEntity":[
+{"@type":"Question","name":"How do I design my own custom sneakers on KickCanvas?","acceptedAnswer":{"@type":"Answer","text":"Open the 3D configurator, pick one of three silhouettes, then tap any part of the shoe — upper, panels, laces, tongue, heel, midsole or outsole — and give it a colour. Pick one finish, such as matte, gloss or suede, and it applies to the whole sneaker. You can add your name or upload artwork and drag it into place on the actual 3D surface. Nothing is charged and no account is needed."}},
+{"@type":"Question","name":"Can I order a pair now?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add your design to the cart and place a Cash on Delivery order. Every order is reviewed by the KickCanvas team and is only confirmed once we approve it; you pay in cash when your pair arrives."}},
+{"@type":"Question","name":"How much will a pair of custom sneakers cost?","acceptedAnswer":{"@type":"Answer","text":"The three silhouettes are priced from ₹4,499 to ₹5,299. Colour and finish changes are included; added artwork or text carries a small print charge shown live in the configurator as you build."}},
+{"@type":"Question","name":"Can I put my own logo or artwork on the shoe?","acceptedAnswer":{"@type":"Answer","text":"Yes. The configurator takes a PNG, JPG, WebP or SVG upload and projects it onto the real 3D surface, so it follows the curve of the material and is lit with the rest of the shoe. You can move, rotate and resize it, and place up to four prints per shoe."}},
+{"@type":"Question","name":"Does the 3D sneaker customizer work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. The 3D model responds to drag to rotate and pinch to zoom, and tapping a part of the shoe selects it. It has been tested down to a 360 px screen."}},
+{"@type":"Question","name":"Where does KickCanvas ship?","acceptedAnswer":{"@type":"Answer","text":"Across India, from Bengaluru (Bangalore), with tracking from the moment a design is confirmed. Each pair is made to order — nothing is manufactured in advance."}}]}
+]}
+</script>
+<script type="application/ld+json" id="productSchema"></script>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDBC9171NQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-RDBC9171NQ');
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg class="vh" aria-hidden="true" focusable="false"><symbol id="kc-mark" viewBox="0 0 100 65.56"><path class="kc-sole" fill-rule="evenodd" d="M89.3 64.7 C89.7 64.6 89.8 64.4 89.6 64.0 C89.4 63.7 88.1 62.4 87.7 62.1 C87.4 61.9 86.9 61.4 85.6 60.2 C84.9 59.5 83.9 58.7 83.5 58.6 C83.3 58.5 82.5 58.6 81.7 58.8 C81.4 58.8 81.0 58.9 80.3 58.9 C79.5 58.9 79.2 58.9 79.0 59.0 C78.6 59.1 78.1 59.1 77.7 59.0 C77.5 59.0 77.1 58.9 76.5 58.9 C75.9 58.9 75.5 58.8 75.3 58.8 C75.1 58.7 74.7 58.6 74.4 58.6 C74.2 58.6 73.8 58.5 73.6 58.5 C73.4 58.4 73.1 58.4 72.9 58.3 C72.5 58.3 70.3 57.7 69.7 57.5 C69.4 57.4 68.9 57.3 68.6 57.2 C68.0 57.1 65.8 56.3 65.2 56.1 C65.0 56.0 64.5 55.8 64.1 55.7 C63.7 55.5 63.0 55.2 62.5 55.0 C62.0 54.7 61.4 54.5 61.2 54.4 C60.7 54.2 59.2 53.5 58.5 53.1 C58.2 52.9 57.7 52.6 57.4 52.5 C56.8 52.1 56.0 51.6 55.1 50.9 C54.3 50.3 52.1 48.1 51.6 47.5 C51.5 47.2 51.0 46.7 50.7 46.3 C50.3 46.0 49.9 45.5 49.7 45.2 C49.3 44.7 47.8 43.2 47.4 42.9 C47.2 42.8 46.9 42.5 46.7 42.4 C46.5 42.2 46.0 41.9 45.8 41.7 C45.2 41.3 43.1 40.3 42.5 40.0 C42.2 39.9 41.8 39.8 41.6 39.7 C41.4 39.6 40.5 39.3 39.7 39.0 C38.8 38.7 38.0 38.4 37.7 38.3 C37.5 38.2 37.0 38.0 36.6 37.9 C36.2 37.8 35.6 37.5 35.2 37.3 C34.9 37.2 34.4 37.0 34.2 36.9 C33.5 36.6 32.5 36.0 31.8 35.2 C30.9 34.4 30.8 34.0 30.8 32.6 L30.9 31.8 L31.0 31.5 C31.3 30.9 31.3 30.7 31.3 30.5 C31.2 30.1 30.8 30.0 30.2 30.1 C30.0 30.2 29.6 30.2 29.4 30.3 C29.1 30.3 28.8 30.4 28.6 30.4 C28.4 30.5 28.0 30.5 27.7 30.6 C26.9 30.6 26.8 30.7 26.3 31.4 C26.1 31.9 25.6 32.5 25.3 33.0 C25.1 33.2 24.8 33.7 24.4 34.6 L23.7 35.9 L23.6 36.5 C23.4 37.3 23.4 37.5 23.6 38.1 C24.0 39.3 24.2 39.5 27.7 41.2 C29.0 41.9 30.4 42.6 30.7 42.8 C31.0 42.9 32.3 43.7 33.6 44.3 C35.7 45.4 36.2 45.6 36.9 46.1 C37.4 46.4 38.0 46.8 38.3 46.9 C38.5 47.0 39.0 47.3 39.3 47.5 C40.1 48.0 40.7 48.4 41.4 48.8 C41.7 48.9 42.1 49.2 42.3 49.3 C42.4 49.4 42.8 49.6 43.0 49.7 C43.3 49.8 43.7 50.1 44.0 50.3 C44.8 50.8 45.5 51.2 46.1 51.5 C46.4 51.7 47.1 52.2 47.7 52.5 C48.3 52.9 49.0 53.4 49.2 53.5 C49.5 53.7 50.0 54.0 50.3 54.2 C50.7 54.4 51.2 54.7 51.4 54.9 C51.7 55.1 53.4 56.1 55.1 57.3 C56.8 58.4 58.4 59.5 58.6 59.6 C58.8 59.7 59.2 59.9 59.4 60.1 C59.5 60.2 60.0 60.6 60.4 60.8 C60.8 61.1 61.3 61.5 61.5 61.6 C61.9 61.9 65.1 64.0 65.4 64.2 C65.7 64.4 66.4 64.6 66.8 64.7 C67.1 64.7 89.0 64.7 89.3 64.7Z"/><path class="kc-k" fill-rule="evenodd" d="M2.0 64.0 C2.1 63.9 2.3 63.8 2.5 63.7 C2.7 63.6 3.0 63.4 3.2 63.3 C3.5 63.1 3.9 62.9 4.1 62.7 C4.4 62.6 4.8 62.3 5.0 62.2 C5.3 62.1 5.7 61.9 5.9 61.7 C6.1 61.6 6.5 61.3 6.7 61.2 C6.9 61.1 7.2 60.9 7.3 60.9 C7.4 60.8 7.7 60.6 8.0 60.4 C8.7 60.0 9.4 59.6 10.0 59.3 C10.2 59.1 10.6 58.9 10.9 58.7 C11.5 58.4 12.1 58.0 12.9 57.5 C13.2 57.3 13.7 57.0 13.9 56.9 C14.2 56.8 14.6 56.6 14.9 56.4 C15.2 56.2 15.5 56.0 15.6 56.0 C15.7 55.9 16.0 55.7 16.3 55.5 C16.6 55.3 17.0 55.1 17.3 55.0 C17.5 54.9 17.9 54.6 18.1 54.5 C18.4 54.3 18.7 54.1 18.9 54.0 C19.1 53.9 19.6 53.6 20.1 53.3 C20.5 53.0 21.1 52.7 21.4 52.5 C21.6 52.4 22.1 52.1 22.3 52.0 C22.5 51.8 22.9 51.6 23.1 51.5 C23.3 51.4 23.6 51.2 23.7 51.2 C23.8 51.1 24.1 50.9 24.4 50.7 C25.1 50.3 25.7 49.9 26.5 49.4 C26.8 49.2 27.3 49.0 27.6 48.9 C28.1 48.6 29.0 48.0 29.1 47.8 C29.3 47.6 29.3 47.4 29.1 47.3 C28.9 47.1 26.4 45.8 25.8 45.6 C25.5 45.5 24.9 45.2 24.4 45.0 C23.9 44.7 23.3 44.5 23.1 44.4 C22.7 44.2 21.1 43.5 20.7 43.2 C20.3 42.9 19.4 42.0 19.2 41.6 C18.9 41.1 18.7 40.4 18.7 40.0 C18.6 39.7 18.7 39.5 18.8 38.9 C19.1 37.9 19.1 37.7 19.6 36.8 C20.2 35.5 20.3 35.5 22.0 33.7 L23.6 32.1 L24.2 31.8 C24.9 31.3 25.4 31.0 26.1 30.8 C27.2 30.4 27.3 30.3 27.5 29.6 C27.7 28.9 28.0 28.4 28.7 27.5 C29.2 26.8 29.5 26.5 30.6 25.4 C31.3 24.7 32.0 24.1 32.3 23.9 C32.5 23.7 33.0 23.3 33.3 23.0 L33.9 22.4 L35.7 21.2 C37.9 19.7 38.8 19.3 40.4 18.7 C40.9 18.5 41.5 18.3 41.6 18.3 C42.1 18.1 42.1 18.0 43.6 14.9 C44.4 13.3 45.2 11.9 45.3 11.6 C45.5 11.0 45.5 10.9 45.8 10.4 C46.1 10.0 46.3 9.7 46.4 9.3 C46.4 9.1 46.8 8.3 47.3 7.4 C47.9 6.1 48.0 5.8 48.0 5.6 L48.1 5.3 L47.9 5.2 C47.9 5.1 47.7 5.1 47.6 5.0 C47.4 5.0 44.4 5.0 37.8 5.0 L28.4 5.0 L28.2 5.1 C27.8 5.3 27.5 5.6 27.2 6.5 C27.2 6.7 26.9 7.3 26.6 7.8 C26.4 8.3 26.2 8.9 26.1 9.1 C26.0 9.3 25.7 10.0 25.4 10.6 C25.1 11.2 24.8 11.9 24.7 12.1 C24.6 12.3 24.3 13.1 23.9 13.8 C23.5 14.6 23.2 15.4 23.1 15.6 C23.0 15.9 22.7 16.5 22.5 17.0 C22.2 17.5 22.0 18.1 21.9 18.3 C21.8 18.5 21.6 19.1 21.3 19.7 C21.0 20.3 20.7 20.9 20.6 21.2 C20.5 21.4 20.2 22.0 20.0 22.5 C19.7 23.0 19.5 23.5 19.5 23.6 C19.5 23.7 19.3 24.0 19.2 24.3 C19.1 24.5 18.9 24.9 18.8 25.2 C18.7 25.4 18.5 25.8 18.3 26.2 C18.1 26.5 17.9 27.0 17.8 27.3 C17.7 27.5 17.4 28.2 17.2 28.7 C17.0 29.2 16.7 29.7 16.6 29.9 C16.6 30.1 16.2 30.9 15.8 31.7 C15.5 32.4 15.1 33.2 15.0 33.5 C14.9 33.7 14.6 34.4 14.3 34.9 C14.1 35.5 13.8 36.1 13.7 36.3 C13.6 36.5 13.5 36.8 13.3 37.1 C13.2 37.3 13.0 37.7 13.0 37.9 C12.9 38.1 12.6 38.6 12.4 39.0 C12.3 39.4 12.0 39.9 11.9 40.1 C11.9 40.4 11.6 41.1 11.3 41.6 C11.0 42.2 10.7 42.9 10.6 43.1 C10.5 43.4 10.2 44.0 10.0 44.5 C9.7 45.0 9.5 45.6 9.4 45.8 C9.3 46.0 9.0 46.7 8.6 47.5 C8.3 48.2 7.9 49.0 7.8 49.2 C7.7 49.5 7.5 50.0 7.3 50.3 C7.2 50.7 7.0 51.1 6.9 51.3 C6.8 51.5 6.4 52.6 5.8 53.6 C5.3 54.7 4.8 55.7 4.7 56.0 C4.6 56.2 4.3 56.9 4.0 57.5 C3.7 58.1 3.4 58.8 3.3 59.0 C3.2 59.3 2.9 59.9 2.7 60.5 C2.4 61.0 2.1 61.7 2.0 62.0 C1.9 62.3 1.7 62.7 1.6 63.0 C1.2 63.9 1.3 64.2 2.0 64.0Z M79.5 56.7 C80.0 56.6 80.2 56.4 80.3 56.2 C80.7 55.5 80.3 55.0 78.3 53.3 C78.0 53.1 77.1 52.2 76.2 51.3 C75.2 50.3 74.5 49.7 74.2 49.5 C73.9 49.3 73.3 48.7 72.2 47.5 C71.0 46.4 70.4 45.8 70.1 45.6 C69.8 45.4 69.1 44.8 68.3 43.9 C67.4 43.1 66.8 42.5 66.5 42.3 C66.2 42.1 65.6 41.5 64.9 40.9 C64.3 40.2 63.7 39.7 63.4 39.5 C63.1 39.3 62.5 38.7 61.6 37.8 C60.7 36.9 60.1 36.4 59.8 36.2 C59.5 36.0 59.0 35.5 58.7 35.2 C57.4 34.0 57.3 33.9 56.3 33.5 C55.6 33.3 55.1 33.3 54.4 33.5 L54.0 33.6 L52.9 33.6 L51.8 33.6 L50.6 33.3 C48.9 32.9 48.4 32.6 47.0 31.8 C45.9 31.2 45.6 31.0 44.6 30.0 C43.5 28.9 43.4 28.8 42.8 27.5 C42.4 26.7 42.3 26.6 42.2 25.9 C42.1 25.5 42.0 25.0 41.9 24.8 C41.9 24.3 41.8 24.1 41.7 24.0 C41.3 23.8 40.5 24.3 39.2 25.6 C38.7 26.2 38.6 26.4 38.1 26.6 C37.5 27.1 36.4 28.2 35.8 28.9 C35.7 29.1 35.4 29.5 35.3 29.6 C35.0 30.0 34.5 31.0 34.3 31.5 C34.1 32.1 34.2 32.6 34.7 33.1 C35.3 33.8 35.8 34.2 36.6 34.5 C36.8 34.5 37.3 34.8 37.8 35.0 C38.5 35.3 39.0 35.6 39.9 35.9 C40.5 36.1 41.3 36.3 41.6 36.5 C41.9 36.6 42.6 36.9 43.2 37.0 L44.2 37.4 L45.7 38.2 C48.2 39.4 49.5 40.3 51.4 42.4 C51.7 42.7 52.5 43.5 53.1 44.1 C53.8 44.8 54.3 45.3 54.5 45.6 C54.9 46.2 56.6 47.9 57.1 48.2 C57.2 48.3 57.6 48.6 57.8 48.8 C58.0 48.9 58.8 49.5 59.5 50.0 C60.7 50.7 61.0 50.9 62.0 51.4 C62.7 51.8 63.4 52.1 63.7 52.2 C63.9 52.3 64.5 52.6 65.0 52.8 C65.5 53.0 66.0 53.3 66.3 53.4 C66.8 53.5 67.7 53.9 68.4 54.2 C69.0 54.5 71.9 55.4 72.5 55.6 C72.7 55.6 73.2 55.7 73.5 55.9 C74.2 56.1 75.2 56.3 76.0 56.5 C76.2 56.5 76.5 56.6 76.7 56.6 C76.9 56.6 77.2 56.7 77.5 56.7 C77.8 56.7 78.1 56.7 78.3 56.7 C78.7 56.8 79.1 56.7 79.5 56.7Z M55.1 29.6 C55.2 29.6 56.1 29.0 57.2 28.3 C58.2 27.6 59.2 26.9 59.4 26.8 C59.6 26.7 60.0 26.5 60.3 26.3 C60.5 26.1 60.9 25.8 61.1 25.7 C61.7 25.4 62.3 25.0 62.8 24.6 C63.0 24.4 63.4 24.2 63.6 24.0 C63.9 23.9 64.7 23.4 65.5 22.8 C66.3 22.3 67.2 21.7 67.4 21.6 C67.7 21.4 68.8 20.7 69.8 20.0 C70.8 19.4 71.9 18.7 72.2 18.5 C72.8 18.2 74.2 17.2 74.7 16.8 C75.0 16.6 75.3 16.4 75.6 16.2 C75.8 16.1 76.8 15.5 77.9 14.8 C78.9 14.1 79.9 13.4 80.2 13.2 C80.5 13.1 81.6 12.4 82.6 11.7 C83.7 11.0 84.7 10.3 85.0 10.2 C85.2 10.0 85.6 9.8 85.8 9.6 C86.1 9.4 86.5 9.1 86.7 9.0 C86.9 8.9 88.1 8.1 89.4 7.3 C90.6 6.4 91.9 5.6 92.2 5.5 C92.4 5.3 93.1 4.9 93.7 4.5 C94.2 4.1 94.9 3.7 95.2 3.5 C95.5 3.4 96.2 2.9 96.8 2.5 C98.2 1.6 98.5 1.3 98.3 1.0 C98.1 0.9 98.4 0.9 86.3 0.9 L74.8 0.9 L74.5 0.9 C74.4 1.0 74.0 1.1 73.7 1.1 C73.1 1.2 72.7 1.4 72.2 1.8 C71.5 2.4 71.0 2.7 70.2 3.3 C69.7 3.6 69.3 3.9 69.2 4.0 C69.0 4.1 68.6 4.4 68.2 4.7 C67.8 5.0 67.3 5.3 67.2 5.4 C67.1 5.5 66.7 5.8 66.3 6.1 C65.8 6.4 65.4 6.7 65.3 6.8 C65.2 6.9 64.7 7.2 64.3 7.5 C63.9 7.8 63.5 8.1 63.3 8.2 C63.2 8.3 62.8 8.6 62.4 8.9 C62.0 9.2 61.5 9.5 61.3 9.7 C60.7 10.1 60.2 10.5 59.3 11.1 C58.5 11.7 58.0 12.1 57.3 12.6 C57.1 12.7 56.6 13.1 56.2 13.3 C55.8 13.6 55.4 13.9 55.3 14.0 C55.2 14.1 54.7 14.4 54.3 14.7 C53.9 15.0 53.5 15.3 53.3 15.4 C53.2 15.5 52.8 15.8 52.4 16.1 C51.9 16.4 51.5 16.7 51.4 16.8 C51.3 16.9 50.8 17.2 50.4 17.5 C50.0 17.8 49.6 18.1 49.4 18.2 C49.3 18.3 48.7 18.7 48.1 19.1 C47.5 19.5 46.9 19.9 46.8 20.1 C46.6 20.2 46.3 20.4 46.1 20.6 C45.5 21.0 45.0 21.4 44.9 21.7 L44.7 21.9 L44.7 22.4 C44.8 23.0 44.9 23.8 45.2 24.7 C45.5 25.7 46.1 26.5 47.0 27.4 C47.7 28.1 47.9 28.3 48.8 28.7 C49.7 29.1 50.8 29.5 51.9 29.7 C51.9 29.7 52.6 29.7 53.4 29.7 C54.7 29.7 54.9 29.7 55.1 29.6Z"/></symbol></svg>
+
+<svg class="vh" aria-hidden="true" focusable="false">
+  <!-- dry-brush stroke: a loaded main stroke plus two thinner bristle streaks -->
+  <symbol id="kc-brush" viewBox="0 0 420 34">
+    <path d="M6 20C40 11 92 8 150 9c62 1 120 4 176 2 34-1 62-4 86-7 4 0 6 3 2 5-28 7-66 11-104 13-60 3-118 2-176 3-46 1-88 4-128 9-6 1-10-1-10-5 0-3 2-5 4-6Z" fill="currentColor"/>
+    <path d="M30 27c70-6 160-7 250-6 30 0 60-1 92-3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" fill="none" opacity=".7"/>
+    <path d="M60 6c50-3 120-2 190-1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".55"/>
+  </symbol>
+  <!-- paint splash: irregular blob, two drips, flung droplets and a light speckle -->
+  <symbol id="kc-splash" viewBox="0 0 220 220">
+    <path d="M112 38c14-2 18 14 30 12 14-2 22-16 34-8 12 9-2 22 6 32 8 9 26 6 28 20 2 13-16 16-17 28-1 11 13 20 6 31-8 12-22 2-31 10-8 7-4 26-17 29-12 3-16-14-27-16-12-2-22 13-33 6-11-8 0-22-8-31-8-9-26-5-30-18-4-12 13-18 13-30 0-12-15-21-8-32 8-11 22-2 32-9 9-7 7-23 22-24Z" fill="currentColor"/>
+    <path d="M140 150c3 14 2 30 6 40 2 6 10 6 11 0 2-10-4-26-5-40Z" fill="currentColor"/>
+    <path d="M86 156c1 10-1 20 2 26 2 4 8 4 8-1 1-8-2-17-2-26Z" fill="currentColor"/>
+    <circle cx="196" cy="54" r="7" fill="currentColor"/><circle cx="210" cy="92" r="4" fill="currentColor"/>
+    <circle cx="28" cy="74" r="6" fill="currentColor"/><circle cx="16" cy="118" r="3.5" fill="currentColor"/>
+    <circle cx="182" cy="176" r="5" fill="currentColor"/><circle cx="48" cy="182" r="4" fill="currentColor"/>
+    <g fill="currentColor" opacity=".55"><circle cx="204" cy="30" r="1.8"/><circle cx="214" cy="40" r="1.2"/><circle cx="8" cy="96" r="1.6"/><circle cx="20" cy="150" r="1.4"/><circle cx="196" cy="132" r="1.5"/><circle cx="160" cy="206" r="1.6"/><circle cx="62" cy="208" r="1.2"/><circle cx="36" cy="40" r="1.5"/></g>
+  </symbol>
+  <!-- hand-drawn arrow -->
+  <symbol id="kc-arrow" viewBox="0 0 160 110">
+    <path d="M8 18c34-14 78-10 104 14 16 15 22 36 22 60" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+    <path d="M118 78c6 6 11 12 16 22 5-10 11-18 19-24" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </symbol>
+</svg>
+
+<div class="announce" role="status">
+  <div class="announce__inner">
+    <span class="announce__dot" aria-hidden="true"></span>
+    <span id="announceText">Orders open · Pay with Cash on Delivery</span>
+  </div>
+</div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-bar">
+    <a class="brand" href="#/" data-link="home" aria-label="KickCanvas — home">
+      <svg class="brand__mark" aria-hidden="true" focusable="false"><use href="#kc-mark"/></svg>
+      <span class="brand__name"><b>Kick</b>Canvas</span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <a href="#/design" data-link="design">Design</a>
+      <a href="#/styles" data-link="styles">Styles</a>
+      <a href="#/how" data-link="how">How it works</a>
+      <a href="#/about" data-link="about">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="icon-btn" href="#/cart" data-link="cart" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 5.5h2l1.6 8.2a1 1 0 0 0 1 .8h6.2a1 1 0 0 0 1-.78L16.5 8H6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="8" cy="17" r="1.1" fill="currentColor"/><circle cx="14" cy="17" r="1.1" fill="currentColor"/>
+        </svg>
+        <span class="cart-count" id="cartCount" data-has="false">0</span>
+      </a>
+      <a class="btn btn--sm" href="#/design" data-link="design">Start designing</a>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav" data-open="false" aria-label="Mobile">
+  <a href="#/design" data-link="design">Design</a>
+  <a href="#/styles" data-link="styles">Styles</a>
+  <a href="#/how" data-link="how">How it works</a>
+  <a href="#/about" data-link="about">About</a>
+  <a href="#/track" data-link="track">Track order</a>
+  <a href="#/cart" data-link="cart">Cart</a>
+  <a class="btn btn--accent btn--lg" href="#/design" data-link="design">Start designing</a>
+</nav>
+
+<main id="main">
+
+  <!-- ============================================================ HOME -->
+  <div class="page" id="page-home" data-page="home">
+    <div class="wrap hero-wrap">
+      <div class="hero">
+        <div class="hero__copy">
+          <svg class="hero__mark reveal" role="img" aria-label="KickCanvas"><use href="#kc-mark"/></svg>
+          <p class="badge reveal d1"><span class="badge__dot" aria-hidden="true"></span> <span id="heroBadge">Orders open</span></p>
+          <h1 class="display-xl marker hero__title reveal d2"><span id="heroLine1">Custom sneakers.</span><br><span class="paint-under"><span id="heroLine2">Designed by you.</span><svg class="paint paint--under" viewBox="0 0 420 34" preserveAspectRatio="none" aria-hidden="true" focusable="false"><use href="#kc-brush"/></svg></span></h1>
+          <p class="lede reveal d3" id="heroText">Your sneakers, your creativity, your canvas. Make every detail your own — colour, finish and artwork, on a real 3D shoe.</p>
+          <div class="hero__ctas reveal d4">
+            <a class="btn btn--accent btn--lg" href="#/design" data-link="design">Design your sneakers</a>
+            <a class="btn btn--ghost btn--lg" href="#/styles" data-link="styles">Explore the collection</a>
+          </div>
+          <div class="hero__meta reveal d4">
+            <div><strong class="num">3</strong><span>Silhouettes in 3D</span></div>
+            <div><strong class="num">Up to 9</strong><span>Recolourable parts</span></div>
+            <div><strong class="num" id="heroFrom">From ₹4,499</strong><span>Per pair</span></div>
+          </div>
+        </div>
+        <div class="hero__art">
+          <svg class="paint paint--splash" viewBox="0 0 220 220" aria-hidden="true" focusable="false"><use href="#kc-splash"/></svg>
+          <svg class="paint paint--splash paint--splash-sm" viewBox="0 0 220 220" aria-hidden="true" focusable="false"><use href="#kc-splash"/></svg>
+          <svg class="paint paint--arrow" viewBox="0 0 160 110" aria-hidden="true" focusable="false"><use href="#kc-arrow"/></svg>
+        <div class="stage hero__stage" id="heroStage">
+          <img class="card__poster stage__poster" id="heroPoster" src="assets/posters/street-low-hero.jpg" alt="KC—01 Vector sneaker rendered in a studio" width="1200" height="900" fetchpriority="high" decoding="async">
+          <div class="stage__hint" id="heroHint"><span class="dot"></span> Drag to explore</div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip" aria-hidden="true">
+      <div class="strip__row" id="stripRow"></div>
+    </div>
+
+    <!-- 01 — how it works. Sits right after the hero, so step 4 lands one to two screens down -->
+    <section id="how" aria-labelledby="how-h" class="sec--surface">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">01 — How it works</p>
+            <h2 class="display-l" id="how-h">From blank canvas to your pair</h2>
+          </div>
+        </div>
+        <ol class="steps">
+          <li><span class="n">01</span><h3>Choose your sneakers</h3><p>Start from one of three real 3D silhouettes — the Vector runner, the Monolith high-top or the Drift knit runner.</p></li>
+          <li><span class="n">02</span><h3>Customise your style</h3><p>Tap any part of the shoe to set its colour, pick one finish for the whole pair, then add your own artwork or text.</p></li>
+          <li><span class="n">03</span><h3>Preview your design</h3><p>Check it from the front, side, back, top and sole. It’s saved on this device as you go.</p></li>
+          <li><span class="n">04</span><h3>We confirm and make it</h3><p>Order with Cash on Delivery. Our team confirms your order, then your pair is made to order and shipped.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 02 — the collection, with prices from the published settings -->
+    <section id="styles" aria-labelledby="styles-h">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">02 — The collection</p>
+            <h2 class="display-l" id="styles-h">Three shapes. Endless pairs.</h2>
+            <p class="lede">Each one is a real 3D model, shown with its price. Open any of them in the configurator and make it yours.</p>
+          </div>
+          <a class="link-underline" href="#/design" data-link="design">
+            Open the configurator
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="cards" id="styleCards"></div>
+      </div>
+    </section>
+
+    <!-- 05 — honest trust signals and the questions people ask first -->
+    <section id="faq-home" aria-labelledby="faqh-h" class="sec--surface">
+      <div class="wrap">
+        <div class="trust">
+          <div>
+            <p class="eyebrow">03 — Before you start</p>
+            <h2 class="display-l" id="faqh-h">Straight answers.</h2>
+            <ul class="trust__list">
+              <li><strong>Free to design</strong><span>No account, no card. Your design is saved on this device.</span></li>
+              <li><strong>Every order confirmed</strong><span>We review each order and confirm it with you before your pair is made.</span></li>
+              <li><strong>Made to order</strong><span>Nothing is manufactured in advance — each pair is produced for its designer.</span></li>
+              <li><strong>Cash on Delivery</strong><span>No online payment. Pay in cash when your pair arrives.</span></li>
+              <li><strong>Based in Bengaluru</strong><span>Shipping across India.</span></li>
+              <li><strong>A human replies</strong><span><a class="link-underline" href="mailto:hello@kickcanvas.in">hello@kickcanvas.in</a>, usually within a day.</span></li>
+            </ul>
+          </div>
+          <div>
+            <div class="faq__list faq__list--home">
+              <details class="faq__item">
+                <summary>Can I buy a pair today?</summary>
+                <p>Yes. Add your design to the cart and place a Cash on Delivery order. Every order is reviewed by our team and is only confirmed once we approve it — you pay in cash when it arrives.</p>
+              </details>
+              <details class="faq__item">
+                <summary>How much will a pair cost?</summary>
+                <p>The three silhouettes are priced from <span data-price-range>₹4,499 to ₹5,299</span>. Each recoloured part, a premium finish and added artwork or text carry a small charge, shown live in the configurator as you build.</p>
+              </details>
+              <details class="faq__item">
+                <summary>Does it work on my phone?</summary>
+                <p>Yes. Drag to rotate, pinch to zoom, and tap any part of the shoe to select it. It’s been tested down to a 360&nbsp;px screen.</p>
+              </details>
+              <details class="faq__item">
+                <summary>What happens to the design I make?</summary>
+                <p>It stays saved in this browser until you order it. When you place an order, the design is saved with the order so our team can make exactly what you built.</p>
+              </details>
+            </div>
+            <a class="link-underline faq__more" href="#/about" data-link="about">
+              More questions
+              <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec--tight">
+      <div class="wrap">
+        <div class="band band--paint">
+          <svg class="paint paint--band" viewBox="0 0 220 220" aria-hidden="true" focusable="false"><use href="#kc-splash"/></svg>
+          <div>
+            <h2 class="display-l marker" id="bandHeading">Every sneaker starts with a canvas.</h2>
+            <p id="bandText">Yours is blank right now. Design it, place your order, and pay in cash when it arrives — our team confirms every order before your pair is made.</p>
+          </div>
+          <a class="btn btn--lg" href="#/design" data-link="design">Design your sneakers</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="join" id="join" aria-labelledby="join-h">
+      <div class="wrap">
+        <div class="join__grid">
+          <div class="join__inner">
+            <p class="eyebrow">Drop list</p>
+            <h2 class="display-l marker" id="join-h">Be first when the drop lands.</h2>
+            <p class="lede">One email, when the first KickCanvas collection opens — with early access to the designs you have already built. No newsletter, no spam.</p>
+            <form class="join__form" id="waitlistForm" data-source="home" novalidate>
+              <label class="vh" for="waitlistEmail">Your email address</label>
+              <input class="input" type="email" id="waitlistEmail" name="email" placeholder="you@example.com"
+                     inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" required>
+              <button class="btn btn--accent btn--lg" type="submit" id="waitlistBtn">Join the drop list</button>
+            </form>
+            <p class="join__note" id="waitlistMsg" role="status" aria-live="polite">Free to join. We only email you about the launch.</p>
+          </div>
+          <ul class="join__perks">
+            <li><strong>24 hours early</strong><span>The list shops before the drop goes public.</span></li>
+            <li><strong>Your designs carry over</strong><span>Everything you build stays saved on this device, ready for the next drop.</span></li>
+            <li><strong>Founding-drop pricing</strong><span>The launch price is held for the list, whatever the collection opens at.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================ CUSTOMIZER -->
+  <div class="page" id="page-design" data-page="design">
+    <div class="wrap" style="padding-top:clamp(16px,2.4vw,32px);padding-bottom:clamp(40px,6vw,80px)">
+      <div class="cz">
+        <!-- 3D stage -->
+        <div class="cz__stage-wrap">
+          <div class="stage cz__stage" id="designStage">
+            <div class="stage-badge">
+              <strong id="stageName">KC—01 Vector</strong>
+              <span id="stageSub">Sculpted runner</span>
+            </div>
+
+            <div class="stage-tools stage-tools--main" role="group" aria-label="Sneaker controls">
+              <button class="tool" type="button" id="btnRotL" aria-label="Rotate left">
+                <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 4.5 4 8l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 8h7.5a4.5 4.5 0 0 1 0 9H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="tool" type="button" id="btnAuto" aria-pressed="false" aria-label="Auto-rotate">
+                <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16.5 10a6.5 6.5 0 1 1-2.2-4.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M16.8 2.8v3.6h-3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="tool" type="button" id="btnReset" aria-label="Reset view">
+                <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 5.5v-3M10 17.5v-3M14.5 10h3M2.5 10h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="10" r="3.4" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+              <button class="tool" type="button" id="btnRotR" aria-label="Rotate right">
+                <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 4.5 16 8l-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8H8.5a4.5 4.5 0 0 0 0 9H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+
+            <div class="stage__hint" id="designHint"><span class="dot"></span> <span id="designHintText">Tap a part of the shoe to select it</span></div>
+
+            <div class="stage__overlay" id="designLoading">
+              <div class="loader-track"><div class="loader-bar" id="loaderBar"></div></div>
+              <p class="small muted" id="loaderText">Loading the 3D sneaker…</p>
+            </div>
+            <div class="stage__overlay" id="designError" hidden>
+              <p style="font-weight:600">The 3D viewer couldn’t start.</p>
+              <p class="small muted" id="designErrorText">Your browser may not support WebGL. You can still browse styles and order.</p>
+              <button class="btn btn--ghost btn--sm" type="button" id="btnRetry3D">Try again</button>
+            </div>
+          </div>
+          <div class="stage-tools stage-tools--views" role="group" aria-label="Camera views">
+            <button class="tool" type="button" data-view="default" aria-pressed="true">3/4</button>
+            <button class="tool" type="button" data-view="side" aria-pressed="false">Side</button>
+            <button class="tool" type="button" data-view="front" aria-pressed="false">Front</button>
+            <button class="tool" type="button" data-view="back" aria-pressed="false">Back</button>
+            <button class="tool" type="button" data-view="top" aria-pressed="false">Top</button>
+            <button class="tool" type="button" data-view="sole" aria-pressed="false">Sole</button>
+          </div>
+          <div class="cz__under">
+            <span id="selReadout">Nothing selected</span>
+            <span class="xs">Drag to rotate · pinch or scroll to zoom</span>
+          </div>
+        </div>
+
+        <!-- control rail -->
+        <form class="rail" id="rail" novalidate>
+          <div class="rail__head">
+            <div class="rail__brand">
+              <svg class="rail__mark" aria-hidden="true" focusable="false"><use href="#kc-mark"/></svg>
+              <p class="eyebrow">KickCanvas Configurator</p>
+            </div>
+            <h1 class="display-m">Design your own shoes online</h1>
+            <p class="small muted">Build your pair from the panels up — every change is applied to the actual 3D model.</p>
+          </div>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend"><span class="n">01</span><span class="t">Model</span></legend>
+            <div class="models" id="modelOpts"></div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend"><span class="n">02</span><span class="t">Part</span><span class="hint">or tap the shoe</span></legend>
+            <div class="chips" id="partChips" role="group" aria-label="Sneaker part"></div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend"><span class="n">03</span><span class="t">Colour</span></legend>
+            <div class="swatches" id="swatches" role="group" aria-label="Colour"></div>
+            <div class="color-meta">
+              <span class="name" id="colorName">Original</span>
+              <button class="color-reset" type="button" id="btnResetPart">Reset this part</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend"><span class="n">04</span><span class="t">Finish</span><span class="hint" id="finishHint">Applies to the entire sneaker</span></legend>
+            <div class="finishes" id="finishes" role="group" aria-label="Finish, applies to the entire sneaker" aria-describedby="finishHint"></div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend"><span class="n">05</span><span class="t">Artwork &amp; text</span><span class="hint" id="decalHint">up to 4</span></legend>
+            <div class="stack">
+              <label class="drop" id="drop">
+                <input type="file" id="artFile" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 15V4.5M7 8l4-3.5L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 14v2.5a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <b>Upload artwork</b>
+                <span>PNG, JPG, WebP or SVG · up to 6 MB</span>
+              </label>
+              <div class="row-2 keep" style="align-items:end">
+                <div class="field">
+                  <label for="textInput">Add text</label>
+                  <input class="input" id="textInput" maxlength="14" placeholder="e.g. PRANAV" autocomplete="off">
+                </div>
+                <button class="btn btn--ghost" type="button" id="btnAddText">Add to shoe</button>
+              </div>
+              <div class="decals" id="decalList"></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend"><span class="n">06</span><span class="t">The pair</span></legend>
+            <div class="stack">
+              <div class="row-2 keep">
+                <div class="field">
+                  <span class="label">Design</span>
+                  <div class="seg" role="group" aria-label="Pair mode">
+                    <button type="button" data-pair="same" aria-pressed="true">Both the same</button>
+                    <button type="button" data-pair="split" aria-pressed="false">Left / right</button>
+                  </div>
+                </div>
+                <div class="field" id="sideField" hidden>
+                  <span class="label">Editing</span>
+                  <div class="seg" role="group" aria-label="Which shoe">
+                    <button type="button" data-side="left" aria-pressed="true">Left</button>
+                    <button type="button" data-side="right" aria-pressed="false">Right</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row-2 keep">
+                <div class="field">
+                  <label for="sizeSel">Size</label>
+                  <select class="select" id="sizeSel"></select>
+                </div>
+                <div class="field">
+                  <label for="qtyInput">Pairs</label>
+                  <input class="input" id="qtyInput" type="number" min="1" max="20" step="1" value="1" inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="fieldset" id="railConvert">
+            <legend class="fieldset__legend"><span class="n">07</span><span class="t">Your design</span></legend>
+            <button class="btn btn--ghost btn--block" type="button" id="btnShareDesign">
+              <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="margin-right:8px;vertical-align:-3px"><path d="M10 13V3m0 0L6.5 6.5M10 3l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 12v3.5A1.5 1.5 0 0 0 5.5 17h9a1.5 1.5 0 0 0 1.5-1.5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Share this design
+            </button>
+            <p class="small muted" style="margin-top:9px">Post it with <strong>#KickCanvas</strong> — we repost the best ones and the designer gets first pick at the drop.</p>
+
+            <div class="rail-join" id="railJoin">
+              <p class="rail-join__title">Want this pair when it drops?</p>
+              <!-- a div, not a form: this sits inside the configurator's own form and the
+                   HTML parser discards a nested <form> element -->
+              <div class="rail-join__form" id="railWaitlistForm" data-source="configurator">
+                <label class="vh" for="railWaitlistEmail">Your email address</label>
+                <input class="input" type="email" id="railWaitlistEmail" name="kc-waitlist-email" placeholder="you@example.com"
+                       inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false">
+                <button class="btn btn--accent" type="button" id="railWaitlistBtn">Notify me</button>
+              </div>
+              <p class="small muted" id="railWaitlistMsg" role="status" aria-live="polite">We save your design with your email, so it is waiting for you when the next drop lands.</p>
+            </div>
+          </fieldset>
+
+          <div class="summary">
+            <div class="summary__lines" id="priceLines"></div>
+            <p class="summary__note" id="availabilityNote" hidden></p>
+            <div class="summary__actions">
+              <button class="btn btn--ghost" type="button" id="btnResetAll">Reset</button>
+              <button class="btn btn--accent" type="button" id="btnAddCart">Add to cart</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ CART -->
+  <div class="page" id="page-cart" data-page="cart">
+    <div class="wrap" style="padding-block:clamp(32px,5vw,64px)">
+      <p class="eyebrow">Your bag</p>
+      <h1 class="display-l" style="margin:10px 0 28px">Cart</h1>
+      <div id="cartBody"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================ CHECKOUT -->
+  <div class="page" id="page-checkout" data-page="checkout">
+    <div class="wrap" style="padding-block:clamp(32px,5vw,64px)">
+      <p class="eyebrow">Almost there</p>
+      <h1 class="display-l" style="margin:10px 0 32px">Checkout</h1>
+      <div class="co-grid">
+        <form id="coForm" novalidate>
+          <div class="panel">
+            <h3>Contact</h3>
+            <div class="stack">
+              <div class="field">
+                <label for="coName">Full name</label>
+                <input class="input" id="coName" name="name" autocomplete="name" required>
+                <span class="err" data-err="coName"></span>
+              </div>
+              <div class="row-2">
+                <div class="field">
+                  <label for="coEmail">Email</label>
+                  <input class="input" id="coEmail" name="email" type="email" autocomplete="email" required>
+                  <span class="err" data-err="coEmail"></span>
+                </div>
+                <div class="field">
+                  <label for="coPhone">Phone</label>
+                  <input class="input" id="coPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+                  <span class="err" data-err="coPhone"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Delivery address</h3>
+            <div class="stack">
+              <div class="field">
+                <label for="coAddr">Address</label>
+                <input class="input" id="coAddr" name="address" autocomplete="address-line1" required>
+                <span class="err" data-err="coAddr"></span>
+              </div>
+              <div class="field">
+                <label for="coApt">Apartment, floor (optional)</label>
+                <input class="input" id="coApt" name="apt" autocomplete="address-line2">
+              </div>
+              <div class="row-3">
+                <div class="field">
+                  <label for="coCity">City</label>
+                  <input class="input" id="coCity" name="city" autocomplete="address-level2" required>
+                  <span class="err" data-err="coCity"></span>
+                </div>
+                <div class="field">
+                  <label for="coState">State</label>
+                  <input class="input" id="coState" name="state" autocomplete="address-level1" required>
+                  <span class="err" data-err="coState"></span>
+                </div>
+                <div class="field">
+                  <label for="coPin">Pincode</label>
+                  <input class="input" id="coPin" name="pincode" inputmode="numeric" autocomplete="postal-code" maxlength="6" required>
+                  <span class="err" data-err="coPin"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="co-side">
+          <div class="panel">
+            <h3>Order summary</h3>
+            <div id="coSummary"></div>
+            <div style="margin-top:18px">
+              <span class="label" style="display:block;margin-bottom:6px">Coupon</span>
+              <div class="coupon">
+                <input class="input" id="coCoupon" placeholder="KICK10" autocomplete="off" aria-label="Coupon code">
+                <button class="btn btn--ghost" type="button" id="btnCoupon">Apply</button>
+              </div>
+              <p class="small" id="couponMsg" style="margin-top:7px;min-height:1.2em"></p>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Payment</h3>
+            <div class="stack">
+              <label class="pay-cod">
+                <input type="radio" name="payment" value="cod" checked>
+                <span class="pay-cod__body">
+                  <b>Cash on Delivery</b>
+                  <span>Pay in cash when your pair arrives. No card or UPI details needed.</span>
+                </span>
+              </label>
+              <p class="small muted">Every order is reviewed by our team. You’ll see it as <b>Pending Confirmation</b> until we approve it.</p>
+              <button class="btn btn--accent btn--lg btn--block" type="button" id="btnPlaceOrder">Place order</button>
+              <p class="pay-note" id="payMsg" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ CONFIRMATION -->
+  <div class="page" id="page-confirmation" data-page="confirmation">
+    <div class="wrap" style="padding-block:clamp(48px,7vw,96px)">
+      <div class="confirm">
+        <div class="confirm__tick confirm__tick--pending">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><circle cx="13" cy="13" r="9" stroke="currentColor" stroke-width="2"/><path d="M13 8.5V13l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="eyebrow">Order received</p>
+        <h1 class="display-m" style="margin:10px auto 12px;max-width:30ch" id="cfTitle">Your order has been placed successfully and is awaiting confirmation from KickCanvas.</h1>
+        <p class="lede" style="margin-inline:auto" id="cfLede">We have received your order request. Our team will review your order and confirm it after approval. Your order is not confirmed yet. Please wait for confirmation from our team.</p>
+        <dl class="kv" id="cfDetail"></dl>
+        <div class="cf-items" id="cfItems"></div>
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:34px;flex-wrap:wrap">
+          <button class="btn" type="button" id="btnTrackLast">Check order status</button>
+          <a class="btn btn--ghost" href="#/" data-link="home">Back to home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ TRACK -->
+  <div class="page" id="page-track" data-page="track">
+    <div class="wrap" style="padding-block:clamp(32px,5vw,64px);max-width:720px">
+      <p class="eyebrow">Order status</p>
+      <h1 class="display-l" style="margin:10px 0 14px">Track your order</h1>
+      <p class="lede">Enter your order ID and the email you ordered with to see its latest status. Orders placed from this browser appear below automatically.</p>
+      <form class="track-form" id="trackForm" novalidate>
+        <input class="input" id="trackId" placeholder="KC-XXXXXXXX" autocomplete="off" autocapitalize="characters" aria-label="Order ID">
+        <input class="input" id="trackEmail" type="email" placeholder="Email used for the order" autocomplete="email" aria-label="Email used for the order">
+        <button class="btn" type="submit" id="btnTrack">Check status</button>
+      </form>
+      <div id="myOrders"></div>
+      <div id="trackResult" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================ ABOUT -->
+  <div class="page" id="page-about" data-page="about">
+    <div class="wrap" style="padding-block:clamp(32px,5vw,64px)">
+      <p class="eyebrow">About</p>
+      <h1 class="display-l" style="margin:10px 0 18px;max-width:20ch">A new way to make a sneaker yours.</h1>
+      <p class="lede" style="max-width:60ch">KickCanvas is building a new way to create sneakers — the freedom to choose the colours, materials and details that make a pair yours. It started with a simple frustration: customisation tools online mostly show you a flat drawing and ask you to imagine the rest. So we built the opposite — a configurator around a real 3D model, where the colour you pick is the colour the material actually takes.</p>
+      <p class="lede" style="max-width:60ch;margin-top:16px">The configurator is live and orders are open. Every order is paid by Cash on Delivery and confirmed by our team before your pair is made.</p>
+      <h2 class="vh">What KickCanvas is</h2>
+      <div class="cards cards--3" style="margin-top:48px">
+        <div class="panel"><h3>Who it’s for</h3><p class="small muted">Students and anyone who’d rather not wear the same pair as everyone in the room.</p></div>
+        <div class="panel"><h3>How it’ll be made</h3><p class="small muted">Nothing is manufactured in advance. Each pair is produced to order once our team confirms it.</p></div>
+        <div class="panel"><h3>Where we’ll ship</h3><p class="small muted">Across India, from Bengaluru (Bangalore), with tracking from the moment your design is confirmed.</p></div>
+      </div>
+      <section class="faq" aria-labelledby="faq-h" style="margin-top:56px">
+        <h2 class="display-m" id="faq-h">Frequently asked questions</h2>
+        <div class="faq__list">
+          <details class="faq__item">
+            <summary>How do I design my own custom sneakers on KickCanvas?</summary>
+            <p>Open the <a class="link-underline" href="#/design" data-link="design">3D configurator</a>, pick one of three silhouettes, then tap any part of the shoe — upper, panels, laces, tongue, heel, midsole or outsole — and give it a colour. Pick one finish, such as matte, gloss or suede, and it applies to the whole sneaker. You can add your name or upload artwork and drag it into place on the actual 3D surface. Nothing is charged and no account is needed.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Can I order a pair now?</summary>
+            <p>Yes. Add your design to the cart and place a Cash on Delivery order. Every order is reviewed by the KickCanvas team and is only confirmed once we approve it; you pay in cash when your pair arrives.</p>
+          </details>
+          <details class="faq__item">
+            <summary>How much will a pair of custom sneakers cost?</summary>
+            <p>The three silhouettes are priced from <span data-price-range>₹4,499 to ₹5,299</span>. Each recoloured part, a premium finish and added artwork or text carry a small charge, shown live in the configurator as you build.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Can I put my own logo or artwork on the shoe?</summary>
+            <p>Yes. The configurator takes a PNG, JPG, WebP or SVG upload and projects it onto the real 3D surface, so it follows the curve of the material and is lit with the rest of the shoe. You can move, rotate and resize it, and place up to four prints per shoe.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Does the 3D sneaker customizer work on a phone?</summary>
+            <p>Yes. The 3D model responds to drag to rotate and pinch to zoom, and tapping a part of the shoe selects it. It has been tested down to a 360&nbsp;px screen.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Where does KickCanvas ship?</summary>
+            <p>Across India, from Bengaluru (Bangalore), with tracking from the moment a design is confirmed. Each pair is made to order — nothing is manufactured in advance.</p>
+          </details>
+        </div>
+      </section>
+
+      <div class="band" style="margin-top:56px">
+        <div>
+          <h2 class="display-m">Questions before you order?</h2>
+          <p>Email us and a human replies, usually within a day.</p>
+        </div>
+        <a class="btn btn--lg" href="mailto:hello@kickcanvas.in">hello@kickcanvas.in</a>
+      </div>
+
+      <!-- Reciprocal links with two other student projects. Plain, followed links with descriptive
+           anchors — no partner badge, because there is no business relationship. -->
+      <section class="friends" aria-labelledby="friends-h" style="margin-top:56px;padding-block:0">
+        <h2 class="display-m" id="friends-h">Fellow student projects</h2>
+        <p class="small muted" style="margin-top:8px;max-width:60ch">Two other student-built stores worth a look. They’re independent projects, not affiliated with KickCanvas.</p>
+        <div class="cards" style="margin-top:20px">
+          <div class="panel">
+            <h3><a class="link-underline" href="https://tavroo.vercel.app/" target="_blank" rel="noopener">Tavroo — made-to-order streetwear with a 3D fitting room</a></h3>
+            <p class="small muted">A Bangalore streetwear concept where you try garments on a 3D avatar before ordering.</p>
+          </div>
+          <div class="panel" style="margin-top:0">
+            <h3><a class="link-underline" href="https://ninetyplus-store.vercel.app/" target="_blank" rel="noopener">Ninety Plus — football boots and personalised jerseys</a></h3>
+            <p class="small muted">Boots sorted by playing surface, and jerseys printed with your name and number.</p>
+          </div>
+        </div>
+      </section>
+
+      <div data-credits style="margin-top:48px;padding-top:24px;border-top:1px solid var(--line)">
+        <h3 style="font-family:var(--text);font-size:.76rem;font-weight:640;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:12px">3D model credits</h3>
+        <ul id="modelCredits" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:.85rem;color:var(--muted);max-width:70ch"></ul>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand brand--lg" href="/" data-link="home" aria-label="KickCanvas — home">
+          <svg class="brand__mark" aria-hidden="true" focusable="false"><use href="#kc-mark"/></svg>
+          <span class="brand__name"><b>Kick</b>Canvas</span>
+        </a>
+        <p style="margin-top:14px;max-width:32ch">Custom sneakers, designed by you. Orders open — Cash on Delivery.</p>
+      </div>
+      <div>
+        <h2 class="footer-h">Shop</h2>
+        <ul>
+          <li><a href="/design" data-link="design">Configurator</a></li>
+          <li><a href="/styles" data-link="styles">Styles</a></li>
+          <li><a href="#/cart" data-link="cart">Cart</a></li>
+          <li><a href="/track" data-link="track">Track order</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Company</h2>
+        <ul>
+          <li><a href="/about" data-link="about">About</a></li>
+          <li><a href="/how" data-link="how">How it works</a></li>
+          <li><a href="mailto:hello@kickcanvas.in">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Get in touch</h2>
+        <ul>
+          <li><a href="mailto:hello@kickcanvas.in">hello@kickcanvas.in</a></li>
+          <li><address>Bengaluru, Karnataka 560083<br>India</address></li>
+          <li><span class="xs">We reply to email within one working day.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> KickCanvas. A student project.</span>
+      <span><a href="/about" data-link="about">3D model credits</a> · Made in Bengaluru</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Netlify parses the deployed HTML for forms at build time. This declaration registers the
+     "waitlist" form; the live widgets post to it with fetch. `company` is the honeypot field. -->
+<form name="waitlist" method="POST" data-netlify="true" netlify-honeypot="company" hidden>
+  <input type="email" name="email">
+  <input type="text" name="source">
+  <input type="text" name="design">
+  <input type="text" name="company">
+</form>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/app.js?v=11"></script>
+<noscript>
+  <div class="wrap" style="padding:40px 0">
+    <p class="lede">KickCanvas’s 3D configurator needs JavaScript. Please enable it, or email <a href="mailto:hello@kickcanvas.in">hello@kickcanvas.in</a> and we’ll build your pair with you.</p>
+  </div>
+</noscript>
+</body>
+</html>

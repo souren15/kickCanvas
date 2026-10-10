@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>KickCanvas Admin</title>
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/admin/admin.css?v=1">
+<script type="module" src="/admin/admin.js?v=1"></script>
+</head>
+<body>
+
+<!-- ============================================================ sign in -->
+<main class="auth" id="viewLogin" hidden>
+  <form class="auth__card" id="loginForm" novalidate>
+    <img class="auth__mark" src="/assets/brand/kc-mark.svg" alt="" width="64" height="42">
+    <h1>KickCanvas admin</h1>
+    <p class="muted">Sign in to review orders and manage the website.</p>
+    <label for="loginUser">Username</label>
+    <input id="loginUser" name="username" autocomplete="username" autocapitalize="off" spellcheck="false" required>
+    <label for="loginPass">Password</label>
+    <input id="loginPass" name="password" type="password" autocomplete="current-password" required>
+    <p class="form-msg" id="loginMsg" role="alert"></p>
+    <button class="btn btn--primary btn--block" type="submit" id="loginBtn">Sign in</button>
+    <a class="auth__back" href="/">Back to the store</a>
+  </form>
+</main>
+
+<!-- ============================================================ app -->
+<div class="app" id="viewApp" hidden>
+  <header class="bar">
+    <a class="bar__brand" href="#dashboard" aria-label="KickCanvas admin, dashboard">
+      <img src="/assets/brand/kc-mark-light.svg" alt="" width="34" height="22">
+      <span>Admin</span>
+    </a>
+    <nav class="bar__nav" aria-label="Admin sections">
+      <a href="#dashboard" data-tab="dashboard">Dashboard</a>
+      <a href="#orders" data-tab="orders">Orders <span class="bar__count" id="navPending" hidden></span></a>
+      <a href="#products" data-tab="products">Products</a>
+      <a href="#content" data-tab="content">Website</a>
+    </nav>
+    <div class="bar__end">
+      <a class="bar__link" href="/" target="_blank" rel="noopener">View store</a>
+      <button class="bar__link" type="button" id="logoutBtn">Sign out</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- dashboard -->
+    <section class="view" id="tab-dashboard" aria-labelledby="dashH">
+      <div class="view__head">
+        <h1 id="dashH">Dashboard</h1>
+        <button class="btn btn--ghost" type="button" data-refresh>Refresh</button>
+      </div>
+      <div class="queue" id="queue"></div>
+      <h2 class="sub">All orders</h2>
+      <dl class="figures" id="figures"></dl>
+      <h2 class="sub">Order value</h2>
+      <dl class="figures figures--money" id="money"></dl>
+    </section>
+
+    <!-- orders -->
+    <section class="view" id="tab-orders" aria-labelledby="ordH" hidden>
+      <div class="view__head">
+        <h1 id="ordH">Orders</h1>
+        <button class="btn btn--ghost" type="button" data-refresh>Refresh</button>
+      </div>
+      <div class="tools">
+        <input class="search" id="orderSearch" type="search" placeholder="Search by order ID, name, email, phone or city" aria-label="Search orders">
+        <div class="filters" id="filters" role="group" aria-label="Filter by status"></div>
+      </div>
+      <div class="table-wrap">
+        <table class="orders" id="ordersTable">
+          <thead><tr>
+            <th scope="col">Order</th><th scope="col">Customer</th><th scope="col">Delivery</th>
+            <th scope="col">Sneaker &amp; customisation</th><th scope="col" class="r">Qty</th><th scope="col" class="r">Total</th>
+            <th scope="col">Payment</th><th scope="col">Status</th><th scope="col"><span class="vh">Actions</span></th>
+          </tr></thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+      <p class="empty-note" id="ordersEmpty" hidden></p>
+    </section>
+
+    <!-- products -->
+    <section class="view" id="tab-products" aria-labelledby="prodH" hidden>
+      <div class="view__head">
+        <h1 id="prodH">Products</h1>
+      </div>
+      <p class="intro">Changes are saved as a draft. Preview them on the real site, then publish when they look right. Prices apply to new orders only.</p>
+      <div class="products" id="productsHost"></div>
+    </section>
+
+    <!-- website + order settings -->
+    <section class="view" id="tab-content" aria-labelledby="contH" hidden>
+      <div class="view__head">
+        <h1 id="contH">Website</h1>
+      </div>
+      <p class="intro">Edit the text customers see and how orders work. Nothing changes on the live site until you publish.</p>
+      <form class="settings" id="contentForm" novalidate>
+        <fieldset>
+          <legend>Homepage</legend>
+          <div class="field"><label for="c-announcement">Announcement bar</label><input id="c-announcement" data-path="content.announcement"></div>
+          <div class="field"><label for="c-heroBadge">Hero badge</label><input id="c-heroBadge" data-path="content.heroBadge"></div>
+          <div class="field-row">
+            <div class="field"><label for="c-heroLine1">Hero heading, first line</label><input id="c-heroLine1" data-path="content.heroLine1"></div>
+            <div class="field"><label for="c-heroLine2">Hero heading, second line <small>(underlined)</small></label><input id="c-heroLine2" data-path="content.heroLine2"></div>
+          </div>
+          <div class="field"><label for="c-heroText">Hero supporting text</label><textarea id="c-heroText" rows="3" data-path="content.heroText"></textarea></div>
+          <div class="field"><label for="c-bandHeading">Promotional banner heading</label><input id="c-bandHeading" data-path="content.bandHeading"></div>
+          <div class="field"><label for="c-bandText">Promotional banner text</label><textarea id="c-bandText" rows="3" data-path="content.bandText"></textarea></div>
+        </fieldset>
+        <fieldset>
+          <legend>Orders</legend>
+          <label class="switch"><input type="checkbox" id="o-accepting" data-path="orders.acceptingOrders"><span>Accept new orders</span></label>
+          <div class="field"><label for="o-closed">Message shown when orders are closed</label><textarea id="o-closed" rows="2" data-path="orders.closedMessage"></textarea></div>
+          <div class="field"><label for="o-title">Order received heading</label><textarea id="o-title" rows="2" data-path="orders.pendingTitle"></textarea></div>
+          <div class="field"><label for="o-msg">Order received message</label><textarea id="o-msg" rows="3" data-path="orders.pendingMessage"></textarea></div>
+          <div class="field-row">
+            <div class="field"><label for="o-ship">Shipping charge (₹)</label><input id="o-ship" type="number" min="0" max="2000" step="1" inputmode="numeric" data-path="orders.shipping"></div>
+            <div class="field"><label for="o-free">Free shipping on orders over (₹) <small>0 = never free</small></label><input id="o-free" type="number" min="0" max="100000" step="1" inputmode="numeric" data-path="orders.freeShippingOver"></div>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+
+  <!-- shared publish bar for Products + Website -->
+  <div class="publish" id="publishBar" hidden>
+    <p class="publish__state" id="publishState">All changes are published.</p>
+    <div class="publish__actions">
+      <button class="btn btn--ghost" type="button" id="discardBtn">Discard draft</button>
+      <button class="btn btn--ghost" type="button" id="saveBtn">Save draft</button>
+      <button class="btn btn--ghost" type="button" id="previewBtn">Preview</button>
+      <button class="btn btn--primary" type="button" id="publishBtn">Publish</button>
+    </div>
+  </div>
+</div>
+
+<!-- order detail drawer -->
+<dialog class="drawer" id="orderDrawer" aria-labelledby="drawerTitle">
+  <div class="drawer__head">
+    <h2 id="drawerTitle">Order</h2>
+    <button class="icon-x" type="button" data-close aria-label="Close order details">×</button>
+  </div>
+  <div class="drawer__body" id="drawerBody"></div>
+  <div class="drawer__foot" id="drawerActions"></div>
+</dialog>
+
+<!-- reject / cancel confirmation -->
+<dialog class="confirm-dlg" id="reasonDlg" aria-labelledby="reasonTitle">
+  <form method="dialog" id="reasonForm">
+    <h2 id="reasonTitle">Reject this order?</h2>
+    <p class="muted" id="reasonText">The customer will see the order as Rejected. This can’t be undone.</p>
+    <label for="reasonInput">Reason <small>(optional, shown to the customer)</small></label>
+    <textarea id="reasonInput" rows="3" maxlength="300"></textarea>
+    <div class="confirm-dlg__actions">
+      <button class="btn btn--ghost" value="cancel" type="submit">Keep order</button>
+      <button class="btn btn--danger" value="ok" type="submit" id="reasonOk">Reject order</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<noscript><p style="padding:24px">The admin panel needs JavaScript.</p></noscript>
+</body>
+</html>

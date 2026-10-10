@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin Account Setup</title>
+<link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/admin/admin.css?v=1">
+<script type="module" src="/admin/setup.js?v=1"></script>
+</head>
+<body>
+<main class="auth">
+  <form class="auth__card" id="setupForm" novalidate style="width:min(560px,100%)">
+    <img class="auth__mark" src="/assets/brand/kc-mark.svg" alt="" width="64" height="42">
+    <h1>Create the admin password</h1>
+    <p class="muted">This page turns your password into a one-way hash for Netlify. Everything happens in this browser: the password is never sent or saved anywhere.</p>
+    <label for="pw1">Password <small class="muted">(at least 12 characters)</small></label>
+    <input id="pw1" type="password" autocomplete="new-password" minlength="12" required>
+    <label for="pw2">Type it again</label>
+    <input id="pw2" type="password" autocomplete="new-password" required>
+    <p class="form-msg" id="setupMsg" role="alert"></p>
+    <button class="btn btn--primary btn--block" type="submit" id="setupBtn">Create hash</button>
+    <div id="setupOut" hidden>
+      <p style="margin:18px 0 6px"><b>Add these in Netlify</b> → Site configuration → Environment variables. Then redeploy.</p>
+      <div class="field"><label for="outUser">ADMIN_USERNAME</label><input id="outUser" value="admin"></div>
+      <div class="field" style="margin-top:10px"><label for="outHash">ADMIN_PASSWORD_HASH</label><textarea id="outHash" rows="3" readonly></textarea></div>
+      <button class="btn btn--ghost btn--sm" type="button" data-copy="outHash" style="margin-top:6px">Copy hash</button>
+      <div class="field" style="margin-top:10px"><label for="outSecret">SESSION_SECRET</label><textarea id="outSecret" rows="2" readonly></textarea></div>
+      <button class="btn btn--ghost btn--sm" type="button" data-copy="outSecret" style="margin-top:6px">Copy secret</button>
+      <p class="muted" style="font-size:.85rem;margin-top:14px">You can change ADMIN_USERNAME to any name you like. To change the password later, come back here, create a new hash and replace ADMIN_PASSWORD_HASH.</p>
+    </div>
+    <a class="auth__back" href="/admin">Go to the admin sign-in</a>
+  </form>
+</main>
+</body>
+</html>

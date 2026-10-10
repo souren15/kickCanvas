@@ -1,0 +1,39 @@
+# Netlify redirect + rewrite rules. First match wins, so order matters.
+
+# Canonicalise the host: one indexable origin, no duplicate-content split.
+# Uncomment and swap both hosts if a custom domain is connected later.
+# https://www.kickcanvas.in/*   https://kickcanvas.in/:splat     301!
+
+# ---------------------------------------------------------------------------------------
+# Campaign short links. Each one 302s to the home page carrying its UTM parameters, so a
+# shareable link stays short and clean in a WhatsApp message or an Instagram story sticker
+# while GA4 still receives full source/medium/campaign attribution. These MUST sit above
+# the catch-all rewrite below, because the first matching rule wins.
+#
+# utm_medium=social puts every one of these in GA4's "Organic Social" channel group.
+# utm_content is what separates the three asks from each other inside that group.
+/wa      /?utm_source=whatsapp&utm_medium=social&utm_campaign=ica_launch_oct26&utm_content=class_group    302
+/wd      /?utm_source=whatsapp&utm_medium=social&utm_campaign=ica_launch_oct26&utm_content=direct_dm      302
+/ig      /?utm_source=instagram&utm_medium=social&utm_campaign=ica_launch_oct26&utm_content=story_sticker 302
+/igb     /?utm_source=instagram&utm_medium=social&utm_campaign=ica_launch_oct26&utm_content=bio_link      302
+/igd     /?utm_source=instagram&utm_medium=social&utm_campaign=ica_launch_oct26&utm_content=direct_dm     302
+# Straight to the configurator, for people who only want to try the tool.
+/try     /design?utm_source=whatsapp&utm_medium=social&utm_campaign=ica_launch_oct26&utm_content=try_tool 302
+
+# ---------------------------------------------------------------------------------------
+# Admin panel: a separate page, never handed to the storefront router.
+/admin          /admin/index.html               200
+/admin/         /admin/index.html               200
+
+# Server code and project files live in this folder but must never be downloadable.
+/netlify/*      /index.html                     404!
+/scripts/*      /index.html                     404!
+/package.json   /index.html                     404!
+/package-lock.json  /index.html                 404!
+/netlify.toml   /index.html                     404!
+/ADMIN-SETUP.md /index.html                     404!
+
+# Single-page app: every unmatched path is rewritten (200, not redirected) to index.html,
+# which lets /design, /styles, /how, /about and /track be real crawlable URLs and valid
+# Google Ads landing pages. The router reads location.pathname when there is no hash.
+/*                             /index.html                      200

@@ -1,0 +1,28 @@
+# KickCanvas — https://kickcanvas.netlify.app
+# Crawling is open for every public storefront view.
+
+User-agent: *
+Allow: /
+
+# Build tooling and the admin panel are not public content.
+Disallow: /tools/
+Disallow: /admin
+
+# Transactional views carry no unique content and should not compete in search results.
+Disallow: /checkout
+Disallow: /confirmation
+Disallow: /cart
+
+# The GLB models are multi-megabyte binaries that consume crawl budget and cannot rank.
+# Images stay crawlable for Google Images.
+Disallow: /assets/models/
+
+# Everything needed to RENDER the page stays open. This is a JavaScript application:
+# blocking the scripts or stylesheets would leave Googlebot rendering a broken page,
+# which is why /assets/vendor/ (Three.js), /js/ and /css/ are explicitly allowed.
+Allow: /assets/vendor/
+Allow: /js/
+Allow: /css/
+Allow: /assets/fonts/
+
+Sitemap: https://kickcanvas.netlify.app/sitemap.xml

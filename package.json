@@ -1,0 +1,15 @@
+{
+  "name": "kickcanvas",
+  "private": true,
+  "type": "module",
+  "description": "KickCanvas custom sneaker store: static site + Netlify Functions (orders, admin) + Netlify Blobs storage.",
+  "scripts": {
+    "hash-password": "node scripts/hash-password.mjs"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.4"
+  },
+  "engines": {
+    "node": ">=22.12"
+  }
+}

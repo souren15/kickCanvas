@@ -1,0 +1,47 @@
+# Netlify response headers.
+# Fingerprint-free filenames, so HTML is revalidated and static assets are cached hard.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/models/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/posters/*
+  Cache-Control: public, max-age=604800
+
+/assets/brand/*
+  Cache-Control: public, max-age=604800
+
+/css/*
+  Cache-Control: public, max-age=86400
+
+/js/*
+  Cache-Control: public, max-age=86400
+
+/admin/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
+
+/admin
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'
