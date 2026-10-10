@@ -1033,8 +1033,13 @@ $('#btnPlaceOrder').addEventListener('click', async () => {
     });
     renderConfirmation(order);
     location.hash = '#/confirmation';
-  } catch {
-    setPayMsg('We couldn’t reach KickCanvas. Check your connection and try again — your cart is safe.', 'error');
+  } catch (err) {
+    console.error('[KickCanvas] placing the order failed:', err);
+    // fetch() only throws TypeError for network failures; anything else is a problem on this page
+    const network = err instanceof TypeError && /fetch|network|load failed/i.test(err.message || '');
+    setPayMsg(network
+      ? 'We couldn’t reach KickCanvas. Check your connection and try again — your cart is safe.'
+      : 'Something went wrong on this page. Refresh the page and try again — your cart is safe.', 'error');
   } finally {
     placing = false;
     btn.textContent = 'Place order';

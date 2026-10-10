@@ -29,10 +29,11 @@
   Cache-Control: public, max-age=604800
 
 /css/*
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=0, must-revalidate
 
 /js/*
-  Cache-Control: public, max-age=86400
+  # revalidate every visit (cheap 304s): a stale script must never mix with a new release
+  Cache-Control: public, max-age=0, must-revalidate
 
 /admin/*
   Cache-Control: no-store

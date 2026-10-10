@@ -31,17 +31,28 @@
 <link rel="preload" href="assets/fonts/manrope-latin-wght-normal.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="assets/fonts/permanent-marker-latin-400-normal.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="assets/posters/street-low-hero.jpg" as="image" fetchpriority="high">
-<link rel="stylesheet" href="css/kickcanvas.css?v=11">
+<link rel="stylesheet" href="/css/kickcanvas.css?v=12">
+<!-- Every module the storefront loads is pinned to the current release (?v=). The browser
+     re-checks index.html on each visit, so a new release always arrives as one consistent set of
+     files - an old cached store.js can never be mixed with a new app.js. Bump RELEASE on change. -->
 <script type="importmap">
 {
   "imports": {
     "three": "./assets/vendor/three/three.module.js",
-    "three/addons/": "./assets/vendor/three/addons/"
+    "three/addons/": "./assets/vendor/three/addons/",
+    "/js/data/products.js": "/js/data/products.js?v=12",
+    "/js/data/pricing.js": "/js/data/pricing.js?v=12",
+    "/js/data/site-config.js": "/js/data/site-config.js?v=12",
+    "/js/ui/store.js": "/js/ui/store.js?v=12",
+    "/js/engine/viewer.js": "/js/engine/viewer.js?v=12",
+    "/js/engine/decals.js": "/js/engine/decals.js?v=12",
+    "/js/engine/modelLoader.js": "/js/engine/modelLoader.js?v=12",
+    "/js/engine/partMaterial.js": "/js/engine/partMaterial.js?v=12"
   }
 }
 </script>
-<link rel="modulepreload" href="js/app.js?v=11">
-<link rel="modulepreload" href="js/engine/viewer.js">
+<link rel="modulepreload" href="/js/app.js?v=12">
+<link rel="modulepreload" href="/js/engine/viewer.js?v=12">
 <link rel="modulepreload" href="./assets/vendor/three/three.module.js">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -745,7 +756,7 @@
 
 <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
 
-<script type="module" src="js/app.js?v=11"></script>
+<script type="module" src="/js/app.js?v=12"></script>
 <noscript>
   <div class="wrap" style="padding:40px 0">
     <p class="lede">KickCanvas’s 3D configurator needs JavaScript. Please enable it, or email <a href="mailto:hello@kickcanvas.in">hello@kickcanvas.in</a> and we’ll build your pair with you.</p>
